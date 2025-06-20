@@ -9,7 +9,7 @@ if len(sys.argv) < 2:
         print ("Usage: python3 main.py <prompt>")
         sys.exit(1)
 
-prompt = sys.argv[1]
+user_prompt = sys.argv[1]
 
 load_dotenv()
 api_key = os.environ.get("GEMINI_API_KEY")
@@ -27,4 +27,7 @@ response = client.models.generate_content(
     contents=messages,
 )
 
-print(f"{response.text}\nPrompt tokens: {response.usage_metadata.prompt_token_count}\nResponse tokens: {response.usage_metadata.candidates_token_count}")
+if '--verbose' in sys.argv:
+    print(f"{response.text}\nUser prompt: {user_prompt}\nPrompt tokens: {response.usage_metadata.prompt_token_count}\nResponse tokens: {response.usage_metadata.candidates_token_count}")
+else:
+    print(response.text)
