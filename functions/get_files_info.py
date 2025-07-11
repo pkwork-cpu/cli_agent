@@ -6,6 +6,8 @@ def get_files_info(working_directory, directory=None):
     target_dir = abs_working_dir
     if directory:
         target_dir = os.path.abspath(os.path.join(working_directory, directory))
+    else:
+        return "Error: No directory specified"
     if not target_dir.startswith(abs_working_dir):
         return f'Error: Cannot list "{directory}" as it is outside the permitted working directory'
     if not os.path.isdir(target_dir):
