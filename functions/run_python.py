@@ -11,7 +11,8 @@ def run_python_file(working_directory, file_path):
     if not abs_file_path.endswith(".py"):
         return f'Error: "{file_path}" is not a Python file.'
     try:
-        result = subprocess.run('uv run' + file_path, timeout=30, capture_output=True, shell=True)
+        run = f'uv run {abs_file_path}'
+        result = subprocess.run(run, timeout=30, capture_output=True, shell=True)
         final_result = []
         final_result.append(f"STDOUT:\n{result.stdout}")
         final_result.append(f"STDERR:\n{result.stderr}")
