@@ -1,3 +1,6 @@
 venv
 .env
-venv 
+venv
+.git_broken
+__pycache__
+functions/__pycache__
